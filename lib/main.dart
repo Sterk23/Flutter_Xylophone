@@ -8,60 +8,19 @@ class XylophoneApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
+        backgroundColor: Colors.black,
         body: SafeArea(
           child: Center(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-            FlatButton(
-              onPressed: () {
-                playSound(1);
-              },
-              child: Text('Doe'),
-              color: Colors.red,
-            ),
-            FlatButton(
-              onPressed: () {
-                playSound(2);
-              },
-              child: Text('Rae'),
-              color: Colors.orange,
-            ),
-            FlatButton(
-              onPressed: () {
-                playSound(3);
-              },
-              child: Text('Me'),
-              color: Colors.yellow,
-            ),
-            FlatButton(
-              onPressed: () {
-                playSound(4);
-              },
-              child: Text('Fah'),
-              color: Colors.green,
-            ),
-            FlatButton(
-              onPressed: () {
-                playSound(5);
-              },
-              child: Text('Sol'),
-              color: Colors.teal,
-            ),
-            FlatButton(
-              onPressed: () {
-                playSound(6);
-              },
-              child: Text('La'),
-              color: Colors.blue,
-            ),
-            FlatButton(
-              onPressed: () {
-                playSound(7);
-              },
-              child: Text('Tee'),
-              color: Colors.purple,
-            ),
+                buildKey(Colors.red, 1),
+                buildKey(Colors.orange, 2),
+                buildKey(Colors.yellow, 3),
+                buildKey(Colors.green, 4),
+                buildKey(Colors.teal, 5),
+                buildKey(Colors.blue, 6),
+                buildKey(Colors.purple, 7),
               ],
             ),
           ),
@@ -73,5 +32,16 @@ class XylophoneApp extends StatelessWidget {
   void playSound(int i) {
     final player = new AudioCache();
     player.play('note$i.wav');
+  }
+
+  Widget buildKey(MaterialColor colors, int soundNumber) {
+    return Expanded(
+      child: FlatButton(
+        onPressed: () {
+          playSound(soundNumber);
+        },
+        color: colors,
+      ),
+    );
   }
 }
